@@ -1,26 +1,187 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
+/* Brand tokens (light theme). The site is light-only. */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --ivory: #f7f4e5;
+  --sand: #eee8d6;
+  --raised: #fffdf7;
+  --ink: #1a2231;
+  --ink-muted: #4f5a6c;
+  --line: #ddd4bd;
+  --navy: #304058;
+  --on-navy: #f7f4e5;
+  --navy-soft: #e2e6ec;
+  --night: #1a2438;
+  --deeper-night: #0b111f;
+  --on-night: #f7f4e5;
+  --champagne: #bcb09a;
+  --champagne-text: #6f5f3e;
+  --champagne-soft: #ece4d0;
+  --promo: #8a2c3b;
+  --on-promo: #ffffff;
+  --promo-soft: #f2dfe0;
+
+  --shadow-soft: 0 16px 40px rgba(26, 34, 49, 0.08);
+
+  /* shadcn semantic variables mapped to the brand tokens */
+  --background: var(--ivory);
+  --foreground: var(--ink);
+  --card: var(--raised);
+  --card-foreground: var(--ink);
+  --popover: var(--raised);
+  --popover-foreground: var(--ink);
+  --primary: var(--navy);
+  --primary-foreground: var(--on-navy);
+  --secondary: var(--champagne-soft);
+  --secondary-foreground: var(--ink);
+  --muted: var(--sand);
+  --muted-foreground: var(--ink-muted);
+  --accent: var(--navy-soft);
+  --accent-foreground: var(--navy);
+  --destructive: var(--promo);
+  --border: var(--line);
+  --input: var(--line);
+  --ring: var(--navy);
+  --radius: 0.75rem;
 }
 
 @theme inline {
+  --font-sans: var(--font-inter), system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-heading: var(--font-sans);
+
+  --color-ivory: var(--ivory);
+  --color-sand: var(--sand);
+  --color-raised: var(--raised);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-line: var(--line);
+  --color-navy: var(--navy);
+  --color-on-navy: var(--on-navy);
+  --color-navy-soft: var(--navy-soft);
+  --color-night: var(--night);
+  --color-deeper-night: var(--deeper-night);
+  --color-on-night: var(--on-night);
+  --color-champagne: var(--champagne);
+  --color-champagne-text: var(--champagne-text);
+  --color-champagne-soft: var(--champagne-soft);
+  --color-promo: var(--promo);
+  --color-on-promo: var(--on-promo);
+  --color-promo-soft: var(--promo-soft);
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Cards 20px, images 12px, pills fully round */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 20px;
+  --radius-pill: 999px;
+
+  --shadow-soft: var(--shadow-soft);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply font-sans;
+  }
+  body {
+    @apply bg-ivory text-ink antialiased;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-semibold tracking-tight;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Lenis smooth scroll */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Small helpers reused across sections */
+@utility eyebrow {
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+@utility glass {
+  background: color-mix(in srgb, var(--night) 45%, transparent);
+  -webkit-backdrop-filter: blur(18px) saturate(1.2);
+  backdrop-filter: blur(18px) saturate(1.2);
+  border: 1px solid color-mix(in srgb, var(--champagne) 40%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Motion */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+@utility animate-rise {
+  opacity: 0;
+  animation: rise 700ms ease-out forwards;
+}
+@utility animate-marquee {
+  animation: marquee 70s linear infinite;
+}
+@utility animate-marquee-slow {
+  animation: marquee 85s linear infinite reverse;
 }

@@ -129,6 +129,30 @@ html.lenis body {
   overflow: hidden;
 }
 
+/* Scrollbar: slim, navy thumb on an ivory track */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--ivory);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--navy);
+  border: 2px solid var(--ivory);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--champagne-text);
+}
+/* Firefox */
+@supports not selector(::-webkit-scrollbar) {
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: var(--navy) var(--ivory);
+  }
+}
+
 /* Small helpers reused across sections */
 @utility eyebrow {
   font-size: 12px;

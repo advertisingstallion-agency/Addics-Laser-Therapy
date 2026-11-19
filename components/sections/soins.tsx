@@ -4,7 +4,12 @@ import { Rings } from "@/components/rings";
 import { SectionHeading } from "@/components/section-heading";
 import { therapyIcons } from "@/components/sections/therapy-icons";
 import { Button } from "@/components/ui/button";
-import { soins, therapies, therapyDuration, therapyPrice } from "@/content/site";
+import {
+  soins,
+  therapies,
+  therapyDuration,
+  therapyPrice,
+} from "@/content/site";
 
 export function Soins() {
   return (
@@ -63,7 +68,7 @@ export function Soins() {
             return (
               <article
                 key={therapy.id}
-                className={`group relative isolate flex min-h-[300px] flex-col overflow-hidden rounded-[20px] border border-line bg-raised p-6 shadow-soft sm:p-8 transition-[transform,box-shadow,border-color] duration-300 hover:-translate-y-1 hover:border-navy hover:shadow-[0_28px_56px_rgba(26,34,49,.14)] motion-reduce:transition-none motion-reduce:hover:translate-y-0 ${isLast ? "md:col-span-2" : ""}`}
+                className={`group relative isolate flex min-h-[300px] flex-col overflow-hidden rounded-[20px] border border-line bg-raised p-6 shadow-soft sm:p-8 transition-[transform,box-shadow,border-color] duration-300  hover:border-navy hover:shadow-[0_28px_56px_rgba(26,34,49,.14)] motion-reduce:transition-none motion-reduce:hover:translate-y-0 ${isLast ? "md:col-span-2" : ""}`}
               >
                 <svg
                   aria-hidden="true"
@@ -97,7 +102,9 @@ export function Soins() {
                       <Clock className="size-3.5" strokeWidth={1.5} />
                       {therapyDuration}
                     </span>
-                    <span className="font-medium text-navy">{therapyPrice}</span>
+                    <span className="font-medium text-navy">
+                      {therapyPrice}
+                    </span>
                   </div>
                   <a
                     href="#reservation"
@@ -124,7 +131,12 @@ export function Soins() {
               <circle cx="150" cy="150" r="140" />
               <circle cx="150" cy="150" r="104" />
               <circle cx="150" cy="150" r="68" />
-              <circle cx="150" cy="150" r="4" className="fill-champagne stroke-none" />
+              <circle
+                cx="150"
+                cy="150"
+                r="4"
+                className="fill-champagne stroke-none"
+              />
             </svg>
             <p className="eyebrow relative mb-3 text-champagne">
               {soins.cta.eyebrow}

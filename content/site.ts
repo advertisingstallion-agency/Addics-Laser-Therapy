@@ -14,7 +14,7 @@ export const site = {
   email: "[Adresse e-mail]",
   address: "[Adresse], Mohammedia",
   hours: "[Horaires d'ouverture]",
-  copyright: "© 2026 Centre Addic's Laser. Tous droits réservés.",
+  copyright: `© ${new Date().getFullYear()} Centre Addic's Laser. Tous droits réservés.`,
 };
 
 export const navLinks = [

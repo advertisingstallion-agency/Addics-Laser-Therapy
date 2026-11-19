@@ -29,15 +29,15 @@ export function Navbar() {
   }, []);
 
   const linkClass =
-    "relative block px-4 py-2 text-xs leading-5 font-medium tracking-[0.16em] uppercase opacity-85 transition-opacity duration-300 hover:opacity-100 focus-visible:ring-2 focus-visible:ring-current focus-visible:outline-none rounded-full";
+    "group/link relative block px-4 py-2 text-xs leading-5 font-medium tracking-[0.16em] uppercase opacity-85 transition-opacity duration-300 hover:opacity-100 focus-visible:ring-2 focus-visible:ring-current focus-visible:outline-none rounded-full";
 
   return (
     <nav
       aria-label="Navigation principale"
-      className={`fixed top-4 left-1/2 z-40 flex w-[calc(100%-32px)] max-w-[1200px] -translate-x-1/2 items-center justify-between gap-6 rounded-full py-2.5 pr-2.5 pl-3.5 transition-[background-color,border-color,color,box-shadow] duration-300 min-[900px]:top-6 min-[900px]:w-[calc(100%-64px)] ${
+      className={`fixed left-1/2 z-40 flex -translate-x-1/2 items-center justify-between gap-6 py-2.5 transition-[top,width,max-width,padding,border-radius,background-color,border-color,color,box-shadow] duration-300 motion-reduce:transition-none ${
         solid
-          ? "border border-line bg-ivory/90 text-ink shadow-soft backdrop-blur-lg"
-          : "glass text-on-night"
+          ? "top-0 w-full max-w-full rounded-none border-b border-line bg-ivory/90 px-4 text-ink shadow-soft backdrop-blur-lg min-[900px]:px-[max(32px,calc((100%-1200px)/2))]"
+          : "glass top-4 w-[calc(100%-32px)] max-w-[1200px] rounded-full pr-2.5 pl-3.5 text-on-night min-[900px]:top-6 min-[900px]:w-[calc(100%-64px)]"
       }`}
     >
       <a
@@ -65,7 +65,17 @@ export function Navbar() {
               aria-current={index === 0 && !solid ? "page" : undefined}
               className={`${linkClass} aria-[current=page]:opacity-100 aria-[current=page]:after:absolute aria-[current=page]:after:bottom-0 aria-[current=page]:after:left-1/2 aria-[current=page]:after:-ml-0.5 aria-[current=page]:after:size-1 aria-[current=page]:after:rounded-full aria-[current=page]:after:content-[''] ${solid ? "aria-[current=page]:after:bg-champagne-text" : "aria-[current=page]:after:bg-champagne"}`}
             >
-              {link.label}
+              <span className="relative block overflow-hidden">
+                <span className="block transition-transform duration-300 ease-out group-hover/link:-translate-y-full group-focus-visible/link:-translate-y-full motion-reduce:transition-none">
+                  {link.label}
+                </span>
+                <span
+                  aria-hidden="true"
+                  className="absolute inset-0 block translate-y-full transition-transform duration-300 ease-out group-hover/link:translate-y-0 group-focus-visible/link:translate-y-0 motion-reduce:transition-none"
+                >
+                  {link.label}
+                </span>
+              </span>
             </a>
           </li>
         ))}

@@ -3,8 +3,10 @@ import { BrandMark } from "@/components/brand-mark";
 import { Button } from "@/components/ui/button";
 import { footer, navLinks, site, therapies } from "@/content/site";
 
-const linkClass =
-  "block rounded-md py-1 text-sm leading-6 text-on-night/70 transition-colors duration-300 hover:text-on-night focus-visible:ring-2 focus-visible:ring-on-night focus-visible:outline-none";
+const textClass = "block py-1 text-sm leading-6 text-on-night/70";
+
+// Champagne underline that grows from the left on hover and focus.
+const linkClass = `${textClass} relative w-fit rounded-md transition-colors duration-300 hover:text-on-night focus-visible:ring-2 focus-visible:ring-on-night focus-visible:outline-none after:absolute after:inset-x-0 after:bottom-1 after:h-px after:origin-left after:scale-x-0 after:bg-champagne after:transition-transform after:duration-300 hover:after:scale-x-100 focus-visible:after:scale-x-100 motion-reduce:after:transition-none`;
 
 const headingClass = "mb-4 text-base leading-6 font-semibold text-on-night";
 
@@ -74,9 +76,9 @@ export function Footer() {
             >
               Instagram
             </a>
-            <span className={linkClass}>{site.phone}</span>
-            <span className={linkClass}>{site.email}</span>
-            <span className={linkClass}>{site.city}</span>
+            <span className={textClass}>{site.phone}</span>
+            <span className={textClass}>{site.email}</span>
+            <span className={textClass}>{site.city}</span>
           </div>
         </div>
 

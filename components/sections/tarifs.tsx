@@ -22,14 +22,14 @@ export function Tarifs() {
 
         <div className="grid grid-cols-[minmax(0,1fr)] items-stretch gap-6 sm:gap-8 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,.8fr)]">
           {/* Price list with leader dots */}
-          <div className="glass rounded-[20px] px-5 py-1 sm:px-8 sm:py-2">
+          <div className="glass overflow-hidden rounded-[20px]">
             <ul>
               {therapies.map((therapy) => {
                 const Icon = therapyIcons[therapy.id];
                 return (
                   <li
                     key={therapy.id}
-                    className="flex items-center gap-3 border-b border-champagne/30 py-4 sm:gap-4 sm:py-[22px] transition-colors duration-300 last:border-b-0 hover:bg-on-night/5"
+                    className="flex items-center gap-3 border-b border-champagne/30 px-5 py-5 sm:gap-4 sm:px-8 sm:py-7 transition-colors duration-300 last:border-b-0 hover:bg-on-night/5"
                   >
                     <div
                       aria-hidden="true"
